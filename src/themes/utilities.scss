@@ -1,0 +1,208 @@
+@import 'sizing.scss';
+
+// DISPLAY
+$displays: (
+  'none': none,
+  'block': block,
+  'flex': flex,
+  'inline': inline,
+);
+
+@each $display, $display-value in $displays {
+  .u-display--#{$display} {
+    display: $display-value !important;
+  }
+}
+
+.u-flex-direction--row {
+  flex-direction: row;
+}
+
+.u-flex-direction--column {
+  flex-direction: column;
+}
+
+.u-flex-align--center {
+  align-items: center;
+}
+
+.u-flex-align--start {
+  align-items: flex-start;
+}
+
+.u-flex-align--end {
+  align-items: flex-end;
+}
+
+.u-flex-justify--center {
+  justify-content: center;
+}
+
+.u-flex-justify--start {
+  justify-content: flex-start;
+}
+
+.u-flex-justify--end {
+  justify-content: flex-end;
+}
+
+.u-overflow--hidden {
+  overflow: hidden;
+}
+
+// FONT
+.u-text-align--center {
+  text-align: center;
+}
+
+.u-text-align--left {
+  text-align: left;
+}
+
+.u-text-align--right {
+  text-align: right;
+}
+
+$weights: (
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+);
+
+@each $weight, $weight-value in $weights {
+  .u-font-weight--#{$weight} {
+    font-weight: $weight-value;
+  }
+}
+
+.u-font-style--italic {
+  font-style: italic;
+}
+
+.u-text-decoration--underline {
+  text-decoration: underline;
+}
+
+.u-text-overflow--1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+.u-text-decoration--none {
+  text-decoration: none;
+}
+
+$transformers: (
+  'none': none,
+  'uppercase': uppercase,
+  'lowercase': lowercase,
+  'capitalize': capitalize,
+);
+
+@each $transform, $transform-value in $transformers {
+  .u-text-transform--#{$transform} {
+    text-transform: $transform-value;
+  }
+}
+
+// WIDTH, MAX WIDTH
+$widths: (
+  '10': 10%,
+  '25': 25%,
+  '33': 33.3%,
+  '50': 50%,
+  '66': 66.6%,
+  '75': 75%,
+  '90': 90%,
+  '100': 100%,
+);
+
+@each $width, $width-value in $widths {
+  .u-width--#{$width} {
+    width: $width-value;
+  }
+
+  .u-max-width--#{$width} {
+    max-width: $width-value;
+  }
+}
+
+.u-height--100 {
+  height: 100%;
+}
+
+// CURSOR
+.u-cursor--clickable {
+  cursor: pointer;
+}
+
+.u-cursor--initial {
+  cursor: initial !important;
+}
+
+.u-cursor--forbidden {
+  cursor: not-allowed;
+}
+
+// MARGIN AND PADDING
+$sizes: (
+  'tiny': 0.25 * $size-base,
+  'xxs': 0.5 * $size-base,
+  'xs': 0.625 * $size-base,
+  'sm': 0.75 * $size-base,
+  'md': 1.25 * $size-base,
+  'lg': 1.5 * $size-base,
+  'xl': 2 * $size-base,
+  'xxl': 2.5 * $size-base,
+  'base': $size-base,
+  'auto': auto,
+  'none': 0,
+);
+$directions: 'left', 'right', 'top', 'bottom';
+
+@each $size, $size-value in $sizes {
+  .u-margin--#{$size} {
+    margin: $size-value !important;
+  }
+
+  @if ($size != 'auto') {
+    .u-padding--#{$size} {
+      padding: $size-value !important;
+    }
+  }
+
+  @each $direction in $directions {
+    .u-margin-#{$direction}--#{$size} {
+      margin-#{$direction}: $size-value !important;
+    }
+
+    @if ($size != 'auto') {
+      .u-padding-#{$direction}--#{$size} {
+        padding-#{$direction}: $size-value !important;
+      }
+    }
+  }
+}
+
+// COLORS AND BACKGROUND
+$colors: (
+  'success': var(--color-success),
+  'warning': var(--color-warning),
+  'error': var(--color-error),
+  'text-light': var(--color-text-light),
+);
+
+@each $color, $color-value in $colors {
+  .u-color--#{$color} {
+    color: $color-value !important;
+  }
+
+  .u-background--#{$color} {
+    background-color: $color-value !important;
+  }
+}
