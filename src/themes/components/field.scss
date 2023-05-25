@@ -1,0 +1,60 @@
+@import '../sizing.scss';
+
+.c-field {
+  padding-bottom: $size-md;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: $size-xxs;
+    color: var(--color-text-light);
+    padding: $size-xxs 0;
+    font-size: $size-base;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  &__input {
+    background: var(--color-gray-1100);
+    border: 1px solid var(--color-gray-400);
+    border-radius: $size-xs;
+    font-family: inherit;
+    font-size: inherit;
+    padding: $size-xs $size-sm;
+    outline: unset;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type='number'] {
+      appearance: textfield;
+    }
+
+    &::placeholder {
+      color: var(--color-text-medium);
+      opacity: 0.8;
+    }
+
+    &:focus {
+      border-color: var(--color-gray-500);
+      filter: var(--shadow-focus);
+    }
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      color: var(--color-text-light);
+    }
+
+    &:disabled {
+      border-color: var(--color-gray-600);
+      cursor: not-allowed;
+    }
+
+    &--invalid {
+      border-color: var(--color-error);
+    }
+  }
+}
