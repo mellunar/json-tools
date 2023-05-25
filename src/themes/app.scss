@@ -1,3 +1,5 @@
+@import 'sizing.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -5,5 +7,11 @@
 }
 
 body {
+  --icon-size: #{$size-base};
   font-family: 'Sarabun', sans-serif;
+}
+
+i-feather {
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
 }
