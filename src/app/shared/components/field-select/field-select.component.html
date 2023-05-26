@@ -16,7 +16,7 @@
 
     <div class="c-field__select-options" *ngIf="open">
       <ng-container *ngFor="let option of options">
-        <label class="c-field__select-option" [for]="ngControl.name + '-' + option">
+        <label class="c-field__select-option" role="button" [for]="ngControl.name + '-' + option">
           {{ option }}
         </label>
         <input

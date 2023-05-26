@@ -10,5 +10,6 @@ export class JsonEditorPage {
   form = new FormGroup({
     test: new FormControl('', { validators: [Validators.required] }),
     options: new FormControl('', { validators: [Validators.required] }),
+    toggle: new FormControl<boolean>(false),
   });
 }

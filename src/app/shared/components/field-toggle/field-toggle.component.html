@@ -1,0 +1,18 @@
+<label
+  class="c-field c-field__toggle"
+  [class.u-cursor--clickable]="!ngControl.disabled"
+  [class.u-cursor--forbidden]="ngControl.disabled"
+  role="button"
+  [for]="ngControl.name">
+  <div class="c-field__toggle-label" *ngIf="label">{{ label }}</div>
+
+  <input
+    type="checkbox"
+    [id]="ngControl.name"
+    [attr.name]="ngControl.name"
+    [formControl]="$any(ngControl.control)" />
+
+  <div class="c-field__toggle-button">
+    <div class="c-field__toggle-button-circle"></div>
+  </div>
+</label>

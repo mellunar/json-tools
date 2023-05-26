@@ -2,6 +2,7 @@
 
 .c-field {
   padding-bottom: $size-md;
+  user-select: none;
 
   &__label {
     display: flex;
@@ -97,6 +98,62 @@
 
     input {
       display: none;
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    min-width: 12.5 * $size-base;
+    width: 100%;
+
+    &-label {
+      color: var(--color-text-light);
+    }
+
+    &-button {
+      background: var(--color-gray-300);
+      border-radius: 1.875 * $size-base;
+      display: flex;
+      align-items: center;
+      width: 3.75 * $size-base;
+      height: 1.875 * $size-base;
+      margin-left: auto;
+      padding: 0.2 * $size-base;
+
+      &-circle {
+        aspect-ratio: 1;
+        background: var(--color-gray-700);
+        border-radius: 50%;
+        height: 100%;
+        margin-left: 0;
+        transition: margin ease-in-out 150ms;
+      }
+    }
+
+    input {
+      display: none;
+
+      &:focus ~ .c-field__toggle-button {
+        border-color: var(--color-gray-500);
+        filter: var(--shadow-focus);
+      }
+
+      &:checked ~ .c-field__toggle-button {
+        background: var(--color-primary-600);
+
+        & > .c-field__toggle-button-circle {
+          background: white;
+          margin-left: 1.875 * $size-base;
+        }
+      }
+
+      &:disabled ~ .c-field__toggle-button {
+        background: var(--color-gray-200);
+
+        & > .c-field__toggle-button-circle {
+          background: var(--color-gray-400);
+        }
+      }
     }
   }
 }
