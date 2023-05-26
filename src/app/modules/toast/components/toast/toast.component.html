@@ -1,0 +1,7 @@
+<div class="e-toast" [ngClass]="'e-toast--' + type" (click)="closeMessage()">
+  <i-feather *ngIf="icon" class="e-toast__icon" [name]="icon"></i-feather>
+  <div class="e-toast__message">{{ message }}</div>
+  <button class="e-toast__button">
+    <i-feather name="x"></i-feather>
+  </button>
+</div>

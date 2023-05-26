@@ -1,0 +1,73 @@
+@import '../../../../../themes/sizing.scss';
+
+.e-toast {
+  display: flex;
+  align-items: center;
+  max-width: 450px;
+  min-width: 300px;
+  position: relative;
+
+  cursor: pointer;
+  margin-top: $size-md;
+  padding: $size-base;
+  padding-left: #{$size-base + $size-sm};
+  overflow: hidden;
+
+  border-radius: $size-xs;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+  user-select: none;
+  background-color: var(--color-gray-900);
+  color: var(--color-text-light);
+  --toast-color: var(--color-blue-600);
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: $size-sm;
+    background: var(--toast-color);
+  }
+
+  &--success {
+    --toast-color: var(--color-green-600);
+  }
+
+  &--error {
+    --toast-color: var(--color-red-600);
+  }
+
+  &--warning {
+    --toast-color: var(--color-yellow-700);
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex: 1 0 auto;
+    margin-right: $size-sm;
+    color: var(--toast-color);
+    --icon-size: #{$size-md};
+    text-align: center;
+  }
+
+  &__message {
+    width: 100%;
+    word-break: break-all;
+  }
+
+  &__button {
+    all: unset;
+    box-sizing: border-box;
+    cursor: inherit;
+    display: inline-flex;
+    font-size: $size-md;
+    margin-left: $size-base;
+    pointer-events: initial;
+  }
+
+  i-feather {
+    display: inline-flex !important;
+  }
+}

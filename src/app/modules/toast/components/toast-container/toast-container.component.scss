@@ -1,0 +1,12 @@
+:host {
+  position: fixed;
+  z-index: 1010;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 0;
+  width: 100%;
+}
