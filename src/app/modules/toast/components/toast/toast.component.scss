@@ -3,8 +3,8 @@
 .e-toast {
   display: flex;
   align-items: center;
-  max-width: 450px;
-  min-width: 300px;
+  max-width: 28.125 * $size-base;
+  min-width: 18.75 * $size-base;
   position: relative;
 
   cursor: pointer;

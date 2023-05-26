@@ -9,5 +9,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class JsonEditorPage {
   form = new FormGroup({
     test: new FormControl('', { validators: [Validators.required] }),
+    options: new FormControl('', { validators: [Validators.required] }),
   });
 }

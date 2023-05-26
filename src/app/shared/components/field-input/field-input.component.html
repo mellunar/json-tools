@@ -2,7 +2,7 @@
   <label class="c-field__label" [for]="ngControl.name" *ngIf="label">{{ label }}</label>
   <input
     class="c-field__input"
-    [class.c-field__input--invalid]="ngControl.touched && ngControl.invalid"
+    [class.c-field__input--invalid]="ngControl.invalid && ngControl.touched"
     [name]="ngControl.name"
     [placeholder]="placeholder"
     [type]="type"

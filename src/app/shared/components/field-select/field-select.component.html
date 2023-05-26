@@ -1,0 +1,31 @@
+<div class="c-field">
+  <div class="c-field__label" *ngIf="label">{{ label }}</div>
+
+  <div class="c-field__select">
+    <button
+      class="c-field__input c-field__select-button"
+      [class.c-field__input--focus]="open"
+      [class.c-field__input--invalid]="ngControl.invalid && ngControl.touched && !open"
+      (click)="dropdownToggle()"
+      #button>
+      <span [class.c-field__input--placeholder]="!ngControl.value">
+        {{ ngControl.value || placeholder }}
+      </span>
+      <i-feather class="u-margin-left--auto" name="chevron-down"></i-feather>
+    </button>
+
+    <div class="c-field__select-options" *ngIf="open">
+      <ng-container *ngFor="let option of options">
+        <label class="c-field__select-option" [for]="ngControl.name + '-' + option">
+          {{ option }}
+        </label>
+        <input
+          type="radio"
+          [id]="ngControl.name + '-' + option"
+          [attr.name]="ngControl.name"
+          [value]="option"
+          [formControl]="$any(ngControl.control)" />
+      </ng-container>
+    </div>
+  </div>
+</div>
