@@ -1,4 +1,10 @@
-<p>json-editor works!</p>
+<div class="e-json-editor__row">
+  <button class="c-button c-button--small" (click)="generateJsonFromForm()" [disabled]="form.invalid">
+    Generate JSON
+  </button>
+  <button class="c-button c-button--small" (click)="resetForm()">Reset</button>
+</div>
+
 <div *ngIf="form.controls.length > 0">
   <div class="e-json-editor__row" *ngFor="let control of form.controls; let i = index">
     <app-json-field [formGroup]="control"></app-json-field>
@@ -13,5 +19,3 @@
     <span>Add item</span>
   </button>
 </div>
-<button (click)="generateJsonFromForm()">Generate JSON</button>
-<button (click)="resetForm()">Reset</button>

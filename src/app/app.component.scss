@@ -1,0 +1,8 @@
+@import '../themes/sizing.scss';
+
+.e-app {
+  &__router {
+    border-top: 1px solid var(--color-gray-300);
+    padding: $size-base $size-lg;
+  }
+}

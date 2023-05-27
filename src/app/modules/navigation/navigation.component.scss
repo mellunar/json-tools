@@ -1,0 +1,29 @@
+@import '../../../themes/sizing.scss';
+
+.e-navigation {
+  display: flex;
+  align-items: center;
+  height: 3.75 * $size-base;
+  padding: 0 $size-lg;
+  user-select: none;
+
+  &__title {
+    color: var(--color-text-light);
+    display: table;
+    font-size: $size-lg;
+    font-weight: 500;
+    margin-right: $size-xxl;
+  }
+
+  &__links {
+    a {
+      color: var(--color-text-medium);
+      text-decoration: none;
+    }
+
+    a:hover,
+    &-active {
+      color: var(--color-text-light) !important;
+    }
+  }
+}

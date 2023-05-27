@@ -45,4 +45,9 @@
   &--square {
     aspect-ratio: 1/1;
   }
+
+  &--small {
+    line-height: 0.8;
+    height: unset;
+  }
 }
