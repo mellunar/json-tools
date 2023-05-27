@@ -1,0 +1,17 @@
+@import '../../../../themes/sizing.scss';
+
+.e-array-row-field {
+  padding-left: $size-lg;
+
+  &__main,
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    gap: $size-base;
+    width: #{28.125 * $size-base};
+  }
+
+  &__row {
+    margin-top: $size-base;
+  }
+}

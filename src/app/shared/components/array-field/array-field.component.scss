@@ -1,0 +1,10 @@
+@import '../../../../themes/sizing.scss';
+
+.e-array-field {
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    gap: $size-base;
+    margin-top: $size-base;
+  }
+}

@@ -1,0 +1,17 @@
+<div class="e-array-field" *ngIf="ngControl">
+  <div
+    class="e-array-field__row"
+    *ngFor="let control of ngControl.value.controls; let i = index"
+    [formGroup]="control">
+    <app-array-row-field [formGroup]="control"></app-array-row-field>
+
+    <button class="c-button c-button--error c-button--square" [disabled]="i === 0" (click)="removeItem(i)">
+      <i-feather name="trash-2"></i-feather>
+    </button>
+  </div>
+
+  <button class="c-button u-margin-left--lg u-margin-top--base" (click)="addItem()">
+    <i-feather name="plus"></i-feather>
+    <span>Add item</span>
+  </button>
+</div>

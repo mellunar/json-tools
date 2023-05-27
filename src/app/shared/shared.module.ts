@@ -7,6 +7,9 @@ import { FieldSelectComponent } from './components/field-select/field-select.com
 import { FieldToggleComponent } from './components/field-toggle/field-toggle.component';
 import { FieldFileComponent } from './components/field-file/field-file.component';
 import { JsonFieldComponent } from './components/json-field/json-field.component';
+import { ArrayFieldComponent } from './components/array-field/array-field.component';
+import { FieldTextareaComponent } from './components/field-textarea/field-textarea.component';
+import { ArrayRowFieldComponent } from './components/array-row-field/array-row-field.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,9 @@ import { JsonFieldComponent } from './components/json-field/json-field.component
     FieldToggleComponent,
     FieldFileComponent,
     JsonFieldComponent,
+    ArrayFieldComponent,
+    FieldTextareaComponent,
+    ArrayRowFieldComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FeatherIconsModule],
   exports: [
@@ -23,6 +29,9 @@ import { JsonFieldComponent } from './components/json-field/json-field.component
     FieldToggleComponent,
     FieldFileComponent,
     JsonFieldComponent,
+    ArrayFieldComponent,
+    FieldTextareaComponent,
+    ArrayRowFieldComponent,
   ],
 })
 export class SharedModule {}

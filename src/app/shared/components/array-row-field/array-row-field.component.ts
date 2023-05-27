@@ -1,27 +1,30 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { JSONFieldInterface, JSONFieldType, JSONType, JSONValue } from 'src/app/core/services/json.interface';
 import { Subscription } from 'rxjs';
+import { JSONType, JSONValue } from 'src/app/core/services/json.interface';
 import { JsonService } from 'src/app/core/services/json.service';
 
 @Component({
-  selector: 'app-json-field',
-  templateUrl: './json-field.component.html',
-  styleUrls: ['./json-field.component.scss'],
+  selector: 'app-array-row-field',
+  templateUrl: './array-row-field.component.html',
+  styleUrls: ['./array-row-field.component.scss'],
 })
-export class JsonFieldComponent implements OnInit, OnDestroy {
-  formGroup: JSONFieldType;
+export class ArrayRowFieldComponent implements OnInit, OnDestroy {
+  formGroup: FormGroup<{
+    type: FormControl<JSONType>;
+    value: FormControl<JSONValue>;
+  }>;
 
   typeOptions: JSONType[] = ['string', 'number', 'boolean', 'array', 'object', 'empty-array', 'empty-object'];
 
-  configSubscription$: Subscription;
+  typeSubscription$: Subscription;
 
   constructor(private formGroupDirective: FormGroupDirective, private jsonService: JsonService) {}
 
   ngOnInit() {
     this.formGroup = this.formGroupDirective.form;
 
-    this.configSubscription$ = this.formGroup.get('type').valueChanges.subscribe((type) => {
+    this.typeSubscription$ = this.formGroup.get('type').valueChanges.subscribe((type) => {
       const value = this.formGroup.get('value');
 
       if (value) {
@@ -35,8 +38,8 @@ export class JsonFieldComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.configSubscription$) {
-      this.configSubscription$.unsubscribe();
+    if (this.typeSubscription$) {
+      this.typeSubscription$.unsubscribe();
     }
   }
 
