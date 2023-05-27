@@ -1,9 +1,16 @@
 <p>json-editor works!</p>
-<form [formGroup]="form">
-  <app-field-input label="label" placeholder="placeholder" type="text" formControlName="test"></app-field-input>
-  <app-field-select
-    placeholder="Type"
-    [options]="['Option A', 'Option B']"
-    formControlName="options"></app-field-select>
-  <app-field-toggle formControlName="toggle"></app-field-toggle>
-</form>
+<div *ngIf="form.controls.length > 0">
+  <div class="e-json-editor__row" *ngFor="let control of form.controls; let i = index">
+    <app-json-field [formGroup]="control"></app-json-field>
+
+    <button class="c-button c-button--error c-button--square" [disabled]="i === 0" (click)="removeItem(i)">
+      <i-feather name="trash-2"></i-feather>
+    </button>
+  </div>
+
+  <button class="c-button u-margin-left--lg u-margin-top--base" (click)="addItem()">
+    <i-feather name="plus"></i-feather>
+    <span>Add item</span>
+  </button>
+</div>
+<button (click)="log()">log</button>

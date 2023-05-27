@@ -1,0 +1,48 @@
+@import '../sizing.scss';
+
+.c-button {
+  --button-background: var(--color-primary-600);
+
+  background: var(--button-background);
+  border: unset;
+  border-radius: $size-xs;
+  color: var(--color-text-light);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $size-tiny;
+
+  font-family: 'Sarabun', sans-serif;
+  font-size: $size-base;
+  font-weight: 500;
+  height: 2.75 * $size-base;
+  padding: $size-xs $size-sm;
+
+  &:hover:not(:disabled) {
+    --button-background: var(--color-primary-700);
+  }
+
+  &:focus:not(:disabled),
+  &:active:not(:disabled) {
+    filter: var(--shadow-focus);
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.25;
+  }
+
+  &--error {
+    --button-background: var(--color-red-600);
+
+    &:hover:not(:disabled) {
+      --button-background: var(--color-red-700);
+    }
+  }
+
+  &--square {
+    aspect-ratio: 1/1;
+  }
+}

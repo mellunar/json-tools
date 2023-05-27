@@ -1,0 +1,40 @@
+<form class="e-json-field" [formGroup]="formGroup" *ngIf="formGroup">
+  <div class="e-json-field__main">
+    <app-field-input placeholder="" [noPadding]="true" formControlName="key"></app-field-input>
+
+    <app-field-select [options]="typeOptions" [noPadding]="true" formControlName="type"></app-field-select>
+
+    <div class="u-width--100">
+      <ng-container *ngIf="formGroup.controls?.value">
+        <ng-container [ngSwitch]="formGroup.value.type">
+          <app-field-input *ngSwitchCase="'string'" [noPadding]="true" formControlName="value"></app-field-input>
+          <app-field-input *ngSwitchCase="'number'" [noPadding]="true" formControlName="value"></app-field-input>
+          <app-field-toggle
+            *ngSwitchCase="'boolean'"
+            [noPadding]="true"
+            formControlName="value"></app-field-toggle>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div
+    class="e-json-field__row"
+    *ngIf="formGroup.controls?.value && (formGroup.value.type === 'array' || formGroup.value.type === 'object')">
+    <ng-container *ngFor="let control of $any(formGroup.value.value).controls; let i = index">
+      <ng-container [ngSwitch]="formGroup.value.type">
+        <ng-container *ngSwitchCase="'array'">
+          <!-- array -->
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'object'">
+          <app-json-field [formGroup]="control"></app-json-field>
+        </ng-container>
+
+        <button class="c-button c-button--error c-button--square" [disabled]="i === 0">
+          <i-feather name="trash-2"></i-feather>
+        </button>
+      </ng-container>
+    </ng-container>
+  </div>
+</form>

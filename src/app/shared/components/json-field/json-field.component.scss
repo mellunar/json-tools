@@ -1,0 +1,17 @@
+@import '../../../../themes/sizing.scss';
+
+.e-json-field {
+  padding-left: $size-lg;
+
+  &__main,
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    gap: $size-base;
+    width: #{40.625 * $size-base};
+  }
+
+  &__row {
+    margin-top: $size-base;
+  }
+}

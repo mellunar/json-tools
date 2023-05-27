@@ -13,6 +13,7 @@ export class FieldSelectComponent implements OnDestroy {
   @Input() label: string;
   @Input() placeholder = 'Select an option';
   @Input() options: string[] = [];
+  @Input() noPadding = false;
 
   ngControl = injectNgControl();
 

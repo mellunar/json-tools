@@ -1,0 +1,10 @@
+@import '../../../../../themes/sizing.scss';
+
+.e-json-editor {
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    gap: $size-base;
+    margin-bottom: $size-base;
+  }
+}

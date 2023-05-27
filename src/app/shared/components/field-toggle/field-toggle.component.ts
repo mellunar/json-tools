@@ -9,6 +9,7 @@ import { ValueAccessorDirective, injectNgControl } from '../../directives/value-
 })
 export class FieldToggleComponent {
   @Input() label = 'Value';
+  @Input() noPadding = false;
 
   ngControl = injectNgControl();
 }

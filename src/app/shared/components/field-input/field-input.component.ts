@@ -9,8 +9,9 @@ import { ValueAccessorDirective, injectNgControl } from '../../directives/value-
 })
 export class FieldInputComponent {
   @Input() label: string;
-  @Input() placeholder: string;
+  @Input() placeholder = '';
   @Input() type: 'text' | 'number' = 'text';
+  @Input() noPadding = false;
 
   ngControl = injectNgControl();
 }
