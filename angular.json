@@ -25,7 +25,8 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/global.scss"],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["file-saver"]
           },
           "configurations": {
             "production": {
