@@ -16,6 +16,10 @@
   }
 
   &__links {
+    display: flex;
+    align-items: center;
+    gap: $size-base;
+
     a {
       color: var(--color-text-medium);
       text-decoration: none;
