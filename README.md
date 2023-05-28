@@ -11,3 +11,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 ## Build
 
 Run `npm run build` to build the project. The build artifacts will be stored in the `build` directory.
+
+### About
+
+Created by Melissa Fernandes. UI by [Abdallah Shahien](https://www.figma.com/community/file/1198987672126500672)
