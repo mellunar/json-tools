@@ -6,7 +6,11 @@
       <ng-container *ngIf="formGroup.controls?.value">
         <ng-container [ngSwitch]="formGroup.value.type">
           <app-field-input *ngSwitchCase="'string'" [noPadding]="true" formControlName="value"></app-field-input>
-          <app-field-input *ngSwitchCase="'number'" [noPadding]="true" formControlName="value"></app-field-input>
+          <app-field-input
+            *ngSwitchCase="'number'"
+            type="number"
+            [noPadding]="true"
+            formControlName="value"></app-field-input>
           <app-field-toggle
             *ngSwitchCase="'boolean'"
             [noPadding]="true"
