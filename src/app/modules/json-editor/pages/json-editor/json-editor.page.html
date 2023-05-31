@@ -1,9 +1,15 @@
 <div class="e-json-editor__row">
+  <!--
   <button class="c-button c-button--small" (click)="generateJsonFromForm()" [disabled]="form.invalid">
     Generate JSON
   </button>
-  <button class="c-button c-button--small" (click)="resetForm()">Reset</button>
-  <button class="c-button c-button--small" (click)="modal()">Modal</button>
+  -->
+
+  <button class="c-button c-button--small" [disabled]="form.invalid" (click)="openJsonFileOptions()">
+    Generate JSON file
+  </button>
+
+  <button class="c-button c-button--small" (click)="resetForm()">Reset form</button>
 </div>
 
 <div *ngIf="form.controls.length > 0">

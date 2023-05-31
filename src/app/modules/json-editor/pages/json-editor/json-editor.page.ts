@@ -40,22 +40,44 @@ export class JsonEditorPage {
     this.form = new FormArray<JSONFieldType>([this.emptyItem]);
   }
 
-  generateJsonFromForm() {
+  async openJsonFileOptions() {
     if (this.form.invalid) {
       return;
     }
 
-    const finalObject = this.getObjectFromArray(this.form.value);
+    const modal = this.modalService.create(SaveOptionsModal);
 
-    const finalJson = JSON.stringify(finalObject, null, 2);
-    const tempFile = new File([finalJson], 'json.json', { type: 'application/json' });
+    await modal.onDismiss.then((data: any) => {
+      const finalJson = this.generateJsonFromForm(data.indentation, data.spaces);
 
-    saveAs(tempFile);
+      const tempFile = new File([finalJson], `${data.name}.json`, { type: 'application/json' });
+
+      saveAs(tempFile);
+    });
   }
 
-  async modal() {
-    const modal = this.modalService.create(SaveOptionsModal);
-    // await modal.onDismiss.then(console.log);
+  private getJsonIndentation(type: string, spaces: number): any {
+    switch (type) {
+      case 'none':
+        return null;
+      case 'tabs':
+        return '\t';
+      case 'spaces':
+        return Number(spaces);
+    }
+  }
+
+  private generateJsonFromForm(type: string, spaces: number) {
+    if (this.form.invalid) {
+      return null;
+    }
+
+    let indentation = this.getJsonIndentation(type, spaces);
+
+    const finalObject = this.getObjectFromArray(this.form.value);
+    const finalJson = JSON.stringify(finalObject, null, indentation);
+
+    return finalJson;
   }
 
   private getObjectFromArray(formArray: any[]) {

@@ -124,7 +124,7 @@ $widths: (
 
 @each $width, $width-value in $widths {
   .u-width--#{$width} {
-    width: $width-value;
+    width: $width-value !important;
   }
 
   .u-max-width--#{$width} {

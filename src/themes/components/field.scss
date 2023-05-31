@@ -198,6 +198,7 @@
       border-radius: 50%;
       cursor: pointer;
       display: block;
+      flex-shrink: 0;
       width: $size-md;
       height: $size-md;
 

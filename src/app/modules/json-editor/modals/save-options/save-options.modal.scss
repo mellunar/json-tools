@@ -1,1 +1,10 @@
+@import '../../../../../themes/sizing.scss';
 
+.e-save-options {
+  &__options {
+    display: flex;
+    align-items: center;
+    gap: $size-base;
+    margin-bottom: $size-base;
+  }
+}

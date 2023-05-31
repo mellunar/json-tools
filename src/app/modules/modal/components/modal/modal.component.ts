@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -25,8 +26,11 @@ export class ModalComponent implements AfterViewInit, OnDestroy, ModalType {
 
   dismissSubscription: Subscription;
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngAfterViewInit() {
     this.setModal();
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy() {

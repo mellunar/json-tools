@@ -5,9 +5,7 @@
   max-width: calc(100vw - #{$size-lg * 2});
   overflow-y: auto;
   overflow-x: hidden;
-
   padding: $size-lg;
-  padding-top: $size-xxl;
 
   scrollbar-color: var(--color-gray-700) var(--color-gray-1100);
   scrollbar-width: thin;
@@ -43,7 +41,7 @@
     z-index: 102;
 
     &:hover {
-      color: var(--color-gray-200);
+      color: var(--color-gray-400);
     }
   }
 }

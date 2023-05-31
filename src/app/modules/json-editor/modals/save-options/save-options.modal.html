@@ -1,24 +1,42 @@
 <div class="c-modal">
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a justo id lorem porta aliquam ut eget nisi.
-    Maecenas sed consectetur nibh. Aenean eget fringilla libero. Aenean volutpat sem ut nulla tempus laoreet.
-    Phasellus vestibulum, tellus non ultricies porttitor, arcu metus dictum nibh, non mollis sem odio id ipsum.
-    Suspendisse et lectus nec justo elementum congue. Sed facilisis tincidunt suscipit. Maecenas vitae ante nec
-    nulla congue volutpat ac finibus tortor. Fusce imperdiet, diam nec elementum tempor, justo ligula fringilla
-    mauris, quis gravida ipsum risus et justo. Nulla ac tellus porttitor, aliquam nunc a, euismod nunc. Curabitur
-    ullamcorper varius odio, sit amet vestibulum tortor.
-  </p>
-  <p>
-    Sed eu sapien risus. Nunc tempor nisl a nulla imperdiet blandit. Ut in consequat nibh. Nulla facilisi. Integer
-    molestie id arcu in accumsan. Etiam dapibus finibus justo, nec molestie nulla malesuada ut. Vivamus fermentum
-    fringilla velit vitae porta. Maecenas consequat ullamcorper nisl, a luctus ligula finibus sit amet.
-  </p>
-  <p>
-    Quisque purus arcu, cursus eget pulvinar vitae, volutpat ac mi. Fusce urna risus, dignissim ut risus in,
-    blandit lobortis est. Nunc tristique arcu quis justo pharetra rutrum. Praesent non dolor in felis ultrices
-    varius. Phasellus at eros vitae ante tristique mattis ut nec nisl. Duis tempus metus et laoreet mollis.
-    Curabitur et enim maximus risus feugiat varius. Praesent commodo non massa sed hendrerit. Donec ullamcorper
-    nunc ut consequat rutrum. Quisque eu rutrum leo. Ut vitae ex sed erat tristique ultrices non non dolor.
-  </p>
-  <button (click)="callDismiss()">dismiss</button>
+  <form [formGroup]="form">
+    <h3 class="c-modal__title">JSON file options</h3>
+
+    <div class="u-width--100 u-display--flex u-flex-align--center">
+      <app-field-input label="File name" [placeholder]="namePlaceholder" formControlName="name"></app-field-input>
+      <span class="u-margin-top--sm u-margin-left--xxs">.json</span>
+    </div>
+
+    <div class="e-save-options__options">
+      <app-field-radio
+        class="u-width--25"
+        label="None"
+        [value]="null"
+        formControlName="indentation"></app-field-radio>
+
+      <app-field-radio
+        class="u-width--25"
+        label="Tabs"
+        value="tabs"
+        formControlName="indentation"></app-field-radio>
+
+      <div class="u-width--50 u-display--flex u-flex-align--center">
+        <app-field-radio
+          class="u-width--25"
+          label="Spaces:"
+          value="spaces"
+          formControlName="indentation"></app-field-radio>
+
+        <app-field-input
+          class="u-margin-left--base"
+          [noPadding]="true"
+          placeholder="2"
+          formControlName="spaces"></app-field-input>
+      </div>
+    </div>
+  </form>
+
+  <div class="u-width--100 u-display--flex u-flex-align--center u-flex-justify--end">
+    <button class="c-button" [disabled]="form.invalid" (click)="submit()">Confirm options</button>
+  </div>
 </div>

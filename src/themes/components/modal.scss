@@ -1,5 +1,12 @@
 @import '../sizing.scss';
 
 .c-modal {
+  user-select: none;
   width: 40 * $size-base;
+
+  &__title {
+    color: var(--color-text-light);
+    font-size: $size-lg;
+    font-weight: 500;
+  }
 }
