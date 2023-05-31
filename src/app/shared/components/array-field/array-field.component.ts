@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ValueAccessorDirective, injectNgControl } from '../../directives/value-accessor.directive';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { JSONType } from 'src/app/core/services/json.interface';
+import { JSONType } from 'src/app/core/services/json/json.interface';
 
 @Component({
   selector: 'app-array-field',

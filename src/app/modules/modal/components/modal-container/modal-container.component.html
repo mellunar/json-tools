@@ -1,0 +1,8 @@
+<div [class.e-modal-container]="modals?.length > 0" *ngIf="modals$ | async as modals">
+  <div class="e-modal-container__item" *ngFor="let modal of modals; let i = index">
+    <div class="e-modal-container__content">
+      <app-modal [modal]="modal" (dismiss)="dismiss(i, $event)"></app-modal>
+    </div>
+    <div class="e-modal-container__backdrop" role="button" (click)="dismiss(i)"></div>
+  </div>
+</div>

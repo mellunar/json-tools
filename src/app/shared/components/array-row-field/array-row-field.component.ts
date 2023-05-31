@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { JSONType, JSONValue } from 'src/app/core/services/json.interface';
-import { JsonService } from 'src/app/core/services/json.service';
+import { JSONType, JSONValue } from 'src/app/core/services/json/json.interface';
+import { JsonService } from 'src/app/core/services/json/json.service';
 
 @Component({
   selector: 'app-array-row-field',

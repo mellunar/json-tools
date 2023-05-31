@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { saveAs } from 'file-saver';
-import { JSONType, JSONFieldType, JSONObject } from 'src/app/core/services/json.interface';
+import { JSONType, JSONFieldType, JSONObject } from 'src/app/core/services/json/json.interface';
+import { ModalService } from 'src/app/modules/modal/state/modal.service';
 import { ToastService } from 'src/app/modules/toast/state/toast.service';
+import { SaveOptionsModal } from '../../modals/save-options/save-options.modal';
 
 @Component({
   selector: 'app-json-editor',
@@ -13,7 +15,7 @@ export class JsonEditorPage {
   form = new FormArray<JSONFieldType>([]);
   emptyItem: JSONFieldType;
 
-  constructor(private toastService: ToastService) {
+  constructor(private toastService: ToastService, private modalService: ModalService) {
     this.emptyItem = new FormGroup({
       key: new FormControl<string>('', { validators: Validators.required }),
       type: new FormControl<JSONType>(null, { validators: Validators.required }),
@@ -49,6 +51,11 @@ export class JsonEditorPage {
     const tempFile = new File([finalJson], 'json.json', { type: 'application/json' });
 
     saveAs(tempFile);
+  }
+
+  async modal() {
+    const modal = this.modalService.create(SaveOptionsModal);
+    // await modal.onDismiss.then(console.log);
   }
 
   private getObjectFromArray(formArray: any[]) {
