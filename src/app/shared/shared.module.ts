@@ -10,6 +10,7 @@ import { JsonFieldComponent } from './components/json-field/json-field.component
 import { ArrayFieldComponent } from './components/array-field/array-field.component';
 import { FieldTextareaComponent } from './components/field-textarea/field-textarea.component';
 import { ArrayRowFieldComponent } from './components/array-row-field/array-row-field.component';
+import { FieldRadioComponent } from './components/field-radio/field-radio.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ArrayRowFieldComponent } from './components/array-row-field/array-row-f
     ArrayFieldComponent,
     FieldTextareaComponent,
     ArrayRowFieldComponent,
+    FieldRadioComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FeatherIconsModule],
   exports: [
@@ -32,6 +34,7 @@ import { ArrayRowFieldComponent } from './components/array-row-field/array-row-f
     ArrayFieldComponent,
     FieldTextareaComponent,
     ArrayRowFieldComponent,
+    FieldRadioComponent,
   ],
 })
 export class SharedModule {}

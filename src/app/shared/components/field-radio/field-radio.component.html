@@ -1,0 +1,10 @@
+<div class="c-field__radio">
+  <input
+    class="c-field__radio-input"
+    type="radio"
+    [attr.name]="ngControl.name"
+    [id]="ngControl.name + '-' + value"
+    [value]="value"
+    [formControl]="ngControl.control" />
+  <label class="c-field__radio-label" [for]="ngControl.name + '-' + value">{{ label }}</label>
+</div>

@@ -60,6 +60,7 @@
 
     &:disabled {
       border-color: var(--color-gray-600);
+      color: var(--color-text-medium);
       cursor: not-allowed;
     }
 
@@ -182,6 +183,55 @@
           background: var(--color-gray-400);
         }
       }
+    }
+  }
+
+  &__radio {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    &-input {
+      appearance: none;
+      background: var(--color-gray-700);
+      border: 1px solid var(--color-gray-300);
+      border-radius: 50%;
+      cursor: pointer;
+      display: block;
+      width: $size-md;
+      height: $size-md;
+
+      &:focus:not(:disabled),
+      &:hover:not(:disabled) {
+        filter: var(--shadow-focus);
+      }
+
+      &:checked {
+        background: white;
+        border: #{0.4 * $size-base} solid var(--color-primary-600);
+
+        &:disabled {
+          background: var(--color-gray-400);
+          border-color: var(--color-gray-200);
+        }
+      }
+
+      &:disabled {
+        background: var(--color-gray-100);
+        border-color: var(--color-gray-300);
+        cursor: initial;
+      }
+
+      &:not(:disabled) ~ .c-field__radio-label {
+        cursor: pointer;
+      }
+    }
+
+    &-label {
+      color: var(--color-text-light);
+      font-size: $size-base;
+      font-weight: 500;
+      padding-left: $size-xxs;
     }
   }
 }
