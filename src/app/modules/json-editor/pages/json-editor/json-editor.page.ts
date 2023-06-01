@@ -48,11 +48,13 @@ export class JsonEditorPage {
     const modal = this.modalService.create(SaveOptionsModal);
 
     await modal.onDismiss.then((data: any) => {
-      const finalJson = this.generateJsonFromForm(data.indentation, data.spaces);
+      if (data) {
+        const finalJson = this.generateJsonFromForm(data.indentation, data.spaces);
 
-      const tempFile = new File([finalJson], `${data.name}.json`, { type: 'application/json' });
+        const tempFile = new File([finalJson], `${data.name}.json`, { type: 'application/json' });
 
-      saveAs(tempFile);
+        saveAs(tempFile);
+      }
     });
   }
 
