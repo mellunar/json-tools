@@ -16,16 +16,13 @@ export class JsonEditorPage {
   emptyItem: JSONFieldType;
 
   constructor(private toastService: ToastService, private modalService: ModalService) {
-    this.emptyItem = new FormGroup({
-      key: new FormControl<string>('', { validators: Validators.required }),
-      type: new FormControl<JSONType>(null, { validators: Validators.required }),
-    });
+    this.emptyItem = this.getEmptyControl();
 
     this.addItem();
   }
 
   addItem() {
-    this.form.push(this.emptyItem);
+    this.form.push(this.getEmptyControl());
   }
 
   removeItem(index: number) {
@@ -37,7 +34,7 @@ export class JsonEditorPage {
   }
 
   resetForm() {
-    this.form = new FormArray<JSONFieldType>([this.emptyItem]);
+    this.form = new FormArray<JSONFieldType>([this.getEmptyControl()]);
   }
 
   async openJsonFileOptions() {
@@ -139,5 +136,12 @@ export class JsonEditorPage {
       case 'empty-array':
         return [];
     }
+  }
+
+  private getEmptyControl() {
+    return new FormGroup({
+      key: new FormControl<string>('', { validators: Validators.required }),
+      type: new FormControl<JSONType>(null, { validators: Validators.required }),
+    });
   }
 }
