@@ -1,9 +1,7 @@
 <div class="e-json-editor__row">
-  <!--
-  <button class="c-button c-button--small" (click)="generateJsonFromForm()" [disabled]="form.invalid">
-    Generate JSON
-  </button>
-  -->
+  <form [formGroup]="fileForm">
+    <app-file-input label="Load JSON from file" formControlName="file"></app-file-input>
+  </form>
 
   <button class="c-button c-button--small" [disabled]="form.invalid" (click)="openJsonFileOptions()">
     Generate JSON file

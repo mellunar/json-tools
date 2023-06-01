@@ -1,0 +1,4 @@
+<div class="e-file-input">
+  <label for="load-json" class="c-button c-button--small">{{ label }}</label>
+  <input id="load-json" name="load-json" [accept]="accept" type="file" (change)="writeValue($event)" #fileInput />
+</div>
