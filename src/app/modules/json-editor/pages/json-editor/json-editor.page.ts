@@ -97,7 +97,7 @@ export class JsonEditorPage implements OnInit, OnDestroy {
     const finalObject = this.getObjectFromArray(this.form.value);
     const finalJson = JSON.stringify(finalObject, null, indentation);
 
-    return finalJson;
+    return finalJson.replace(/\\\\/gm, '\\');
   }
 
   private getObjectFromArray(formArray: any[]) {
