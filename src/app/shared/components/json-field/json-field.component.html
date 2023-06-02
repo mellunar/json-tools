@@ -33,7 +33,7 @@
         <div class="e-json-field__row" *ngFor="let control of $any(formGroup.value.value).controls; let i = index">
           <app-json-field [formGroup]="control"></app-json-field>
 
-          <button class="c-button c-button--error c-button--square" [disabled]="i === 0" (click)="removeItem(i)">
+          <button class="c-button c-button--error c-button--square" (click)="removeItem(i)">
             <i-feather name="trash-2"></i-feather>
           </button>
         </div>

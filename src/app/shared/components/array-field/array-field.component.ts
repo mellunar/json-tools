@@ -26,10 +26,6 @@ export class ArrayFieldComponent implements OnInit {
   }
 
   removeItem(index: number) {
-    if (index === 0) {
-      return;
-    }
-
     this.ngControl.value.removeAt(index);
   }
 }

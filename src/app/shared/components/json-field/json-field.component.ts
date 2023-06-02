@@ -50,10 +50,6 @@ export class JsonFieldComponent implements OnInit, OnDestroy {
   }
 
   removeItem(index: number) {
-    if (index === 0) {
-      return;
-    }
-
     (this.formGroup.get('value').value as FormArray).removeAt(index);
   }
 }

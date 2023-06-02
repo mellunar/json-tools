@@ -5,7 +5,7 @@
     [formGroup]="control">
     <app-array-row-field [formGroup]="control"></app-array-row-field>
 
-    <button class="c-button c-button--error c-button--square" [disabled]="i === 0" (click)="removeItem(i)">
+    <button class="c-button c-button--error c-button--square" (click)="removeItem(i)">
       <i-feather name="trash-2"></i-feather>
     </button>
   </div>
