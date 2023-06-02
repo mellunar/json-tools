@@ -8,10 +8,19 @@
     display: flex;
     align-items: flex-start;
     gap: $size-base;
-    width: #{28.125 * $size-base};
   }
 
   &__row {
     margin-top: $size-base;
+  }
+
+  &__col {
+    display: inline-table;
+    min-width: 12.5 * $size-base;
+    max-width: 12.5 * $size-base;
+
+    &-l {
+      min-width: 25 * $size-base;
+    }
   }
 }

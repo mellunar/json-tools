@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { JSONType, JSONValue } from 'src/app/core/services/json/json.interface';
@@ -10,6 +10,8 @@ import { JsonService } from 'src/app/core/services/json/json.service';
   styleUrls: ['./array-row-field.component.scss'],
 })
 export class ArrayRowFieldComponent implements OnInit, OnDestroy {
+  @Output() remove = new EventEmitter();
+
   formGroup: FormGroup<{
     type: FormControl<JSONType>;
     value: FormControl<JSONValue>;
@@ -41,6 +43,10 @@ export class ArrayRowFieldComponent implements OnInit, OnDestroy {
     if (this.typeSubscription$) {
       this.typeSubscription$.unsubscribe();
     }
+  }
+
+  callRemove() {
+    this.remove.emit();
   }
 
   addItem() {

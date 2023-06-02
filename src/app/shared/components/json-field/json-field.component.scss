@@ -1,6 +1,9 @@
 @import '../../../../themes/sizing.scss';
 
 .e-json-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding-left: $size-lg;
 
   &__main,
@@ -8,10 +11,19 @@
     display: flex;
     align-items: flex-start;
     gap: $size-base;
-    width: #{40.625 * $size-base};
   }
 
   &__row {
     margin-top: $size-base;
+  }
+
+  &__col {
+    display: inline-table;
+    min-width: 12.5 * $size-base;
+    max-width: 12.5 * $size-base;
+
+    &-l {
+      min-width: 25 * $size-base;
+    }
   }
 }

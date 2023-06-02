@@ -1,28 +1,32 @@
 <form class="e-json-field" [formGroup]="formGroup" *ngIf="formGroup">
   <div class="e-json-field__main">
-    <app-field-input placeholder="" [noPadding]="true" formControlName="key"></app-field-input>
-
-    <app-field-select [options]="typeOptions" [noPadding]="true" formControlName="type"></app-field-select>
-
-    <div class="u-width--100">
-      <ng-container *ngIf="formGroup.controls?.value">
-        <ng-container [ngSwitch]="formGroup.value.type">
-          <app-field-textarea
-            *ngSwitchCase="'string'"
-            [noPadding]="true"
-            formControlName="value"></app-field-textarea>
-          <app-field-input
-            *ngSwitchCase="'number'"
-            type="number"
-            [noPadding]="true"
-            formControlName="value"></app-field-input>
-          <app-field-toggle
-            *ngSwitchCase="'boolean'"
-            [noPadding]="true"
-            formControlName="value"></app-field-toggle>
-        </ng-container>
-      </ng-container>
+    <div class="e-json-field__col">
+      <app-field-input placeholder="" [noPadding]="true" formControlName="key"></app-field-input>
     </div>
+
+    <div class="e-json-field__col">
+      <app-field-select [options]="typeOptions" [noPadding]="true" formControlName="type"></app-field-select>
+    </div>
+
+    <ng-container *ngIf="formGroup.controls?.value">
+      <ng-container [ngSwitch]="formGroup.value.type">
+        <div class="e-json-field__col-l" *ngSwitchCase="'string'">
+          <app-field-textarea [noPadding]="true" formControlName="value"></app-field-textarea>
+        </div>
+
+        <div class="e-json-field__col" *ngSwitchCase="'number'">
+          <app-field-input type="number" [noPadding]="true" formControlName="value"></app-field-input>
+        </div>
+
+        <div class="e-json-field__col" *ngSwitchCase="'boolean'">
+          <app-field-toggle [noPadding]="true" formControlName="value"></app-field-toggle>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <button class="c-button c-button--error c-button--square" (click)="callRemove()">
+      <i-feather name="trash-2"></i-feather>
+    </button>
   </div>
 
   <ng-container
@@ -34,11 +38,7 @@
 
       <ng-container *ngSwitchCase="'object'">
         <div class="e-json-field__row" *ngFor="let control of $any(formGroup.value.value).controls; let i = index">
-          <app-json-field [formGroup]="control"></app-json-field>
-
-          <button class="c-button c-button--error c-button--square" (click)="removeItem(i)">
-            <i-feather name="trash-2"></i-feather>
-          </button>
+          <app-json-field [formGroup]="control" (remove)="removeItem(i)"></app-json-field>
         </div>
 
         <button class="c-button u-margin-left--lg u-margin-top--base" (click)="addItem()">

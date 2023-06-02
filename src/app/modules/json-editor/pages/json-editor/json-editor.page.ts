@@ -47,10 +47,6 @@ export class JsonEditorPage implements OnInit, OnDestroy {
   }
 
   removeItem(index: number) {
-    if (index === 0) {
-      return;
-    }
-
     this.form.removeAt(index);
   }
 

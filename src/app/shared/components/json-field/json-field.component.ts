@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { JSONFieldInterface, JSONFieldType, JSONType, JSONValue } from 'src/app/core/services/json/json.interface';
 import { Subscription } from 'rxjs';
@@ -10,6 +10,8 @@ import { JsonService } from 'src/app/core/services/json/json.service';
   styleUrls: ['./json-field.component.scss'],
 })
 export class JsonFieldComponent implements OnInit, OnDestroy {
+  @Output() remove = new EventEmitter();
+
   formGroup: JSONFieldType;
 
   typeOptions: JSONType[] = ['string', 'number', 'boolean', 'array', 'object', 'empty-array', 'empty-object'];
@@ -38,6 +40,10 @@ export class JsonFieldComponent implements OnInit, OnDestroy {
     if (this.configSubscription$) {
       this.configSubscription$.unsubscribe();
     }
+  }
+
+  callRemove() {
+    this.remove.emit();
   }
 
   addItem() {
