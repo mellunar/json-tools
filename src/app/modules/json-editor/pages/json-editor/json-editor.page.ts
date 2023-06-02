@@ -189,7 +189,7 @@ export class JsonEditorPage implements OnInit, OnDestroy {
 
       const keys = Object.keys(jsonData);
 
-      const groups = keys.map((key) => this.createFieldFromKey(jsonData[key], key));
+      const groups = keys.map((key) => this.createFieldFromJson(jsonData[key], key));
 
       this.form = new FormArray(groups);
     };
@@ -197,7 +197,7 @@ export class JsonEditorPage implements OnInit, OnDestroy {
     reader.readAsText(file);
   }
 
-  private createFieldFromKey(value: any, key?: string) {
+  private createFieldFromJson(value: any, key?: string) {
     const control: FormGroup = new FormGroup({
       type: new FormControl<JSONType>(null, { validators: Validators.required }),
     });
@@ -228,7 +228,7 @@ export class JsonEditorPage implements OnInit, OnDestroy {
       control.addControl('value', valueControl);
 
       value.forEach((item) => {
-        const itemControl = this.createFieldFromKey(item);
+        const itemControl = this.createFieldFromJson(item);
         (control.get('value').value as FormArray).push(itemControl);
       });
     } else if (typeof value === 'object' && Object.keys(value).length < 1) {
@@ -243,7 +243,7 @@ export class JsonEditorPage implements OnInit, OnDestroy {
 
       const objKeys = Object.keys(value);
       objKeys.forEach((objKey) => {
-        const keyControl = this.createFieldFromKey(value[objKey], objKey);
+        const keyControl = this.createFieldFromJson(value[objKey], objKey);
         (control.get('value').value as FormArray).push(keyControl);
       });
     }
