@@ -174,8 +174,14 @@ export class JsonEditorPage implements OnInit, OnDestroy {
     const reader = new FileReader();
 
     reader.onload = (event) => {
-      const escapedJson = this.jsonService.escapeControlCharacters(event.target.result as string);
-      const jsonData = JSON.parse(escapedJson as string);
+      let jsonData: { [key: string]: any };
+
+      try {
+        jsonData = JSON.parse(event.target.result as string);
+      } catch (_) {
+        const escapedJson = this.jsonService.escapeControlCharacters(event.target.result as string);
+        jsonData = JSON.parse(escapedJson as string);
+      }
 
       if (!jsonData || Object.keys(jsonData).length < 1) {
         return;
@@ -183,7 +189,7 @@ export class JsonEditorPage implements OnInit, OnDestroy {
 
       const keys = Object.keys(jsonData);
 
-      const groups = keys.map((key) => this.createFieldFromKey(key, jsonData[key]));
+      const groups = keys.map((key) => this.createFieldFromKey(jsonData[key], key));
 
       this.form = new FormArray(groups);
     };
@@ -191,11 +197,14 @@ export class JsonEditorPage implements OnInit, OnDestroy {
     reader.readAsText(file);
   }
 
-  private createFieldFromKey(key: string, value: any) {
-    const control: JSONFieldType = new FormGroup({
-      key: new FormControl<string>(key, { validators: Validators.required }),
+  private createFieldFromKey(value: any, key?: string) {
+    const control: FormGroup = new FormGroup({
       type: new FormControl<JSONType>(null, { validators: Validators.required }),
     });
+
+    if (key) {
+      control.addControl('key', new FormControl<string>(key, { validators: Validators.required }));
+    }
 
     if (typeof value === 'string') {
       const valueControl = this.jsonService.getControl('string', value);
@@ -218,7 +227,10 @@ export class JsonEditorPage implements OnInit, OnDestroy {
       control.get('type').setValue('array');
       control.addControl('value', valueControl);
 
-      // TODO: array value implementation
+      value.forEach((item) => {
+        const itemControl = this.createFieldFromKey(item);
+        (control.get('value').value as FormArray).push(itemControl);
+      });
     } else if (typeof value === 'object' && Object.keys(value).length < 1) {
       const valueControl = this.jsonService.getControl('empty-object');
       control.get('type').setValue('empty-object');
@@ -231,7 +243,7 @@ export class JsonEditorPage implements OnInit, OnDestroy {
 
       const objKeys = Object.keys(value);
       objKeys.forEach((objKey) => {
-        const keyControl = this.createFieldFromKey(objKey, value[objKey]);
+        const keyControl = this.createFieldFromKey(value[objKey], objKey);
         (control.get('value').value as FormArray).push(keyControl);
       });
     }
