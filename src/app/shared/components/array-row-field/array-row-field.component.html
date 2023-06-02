@@ -5,7 +5,10 @@
     <div class="u-width--100">
       <ng-container *ngIf="formGroup.controls?.value">
         <ng-container [ngSwitch]="formGroup.value.type">
-          <app-field-input *ngSwitchCase="'string'" [noPadding]="true" formControlName="value"></app-field-input>
+          <app-field-textarea
+            *ngSwitchCase="'string'"
+            [noPadding]="true"
+            formControlName="value"></app-field-textarea>
           <app-field-input
             *ngSwitchCase="'number'"
             type="number"

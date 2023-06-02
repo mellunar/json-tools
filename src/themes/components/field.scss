@@ -235,4 +235,13 @@
       padding-left: $size-xxs;
     }
   }
+
+  &__textarea {
+    resize: none;
+    transition: height ease-in-out 150ms;
+
+    &:focus {
+      height: (2.75 * $size-base) * 2;
+    }
+  }
 }

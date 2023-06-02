@@ -1,1 +1,8 @@
-<p>field-textarea works!</p>
+<div class="c-field" [class.u-padding--none]="noPadding">
+  <label class="c-field__label" [for]="ngControl.name" *ngIf="label">{{ label }}</label>
+  <textarea
+    class="c-field__input c-field__textarea"
+    [class.c-field__input--invalid]="ngControl.invalid && ngControl.touched"
+    [name]="ngControl.name"
+    [formControl]="ngControl.control"></textarea>
+</div>
