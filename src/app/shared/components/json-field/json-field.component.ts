@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { JSONFieldInterface, JSONFieldType, JSONType, JSONValue } from 'src/app/core/services/json/json.interface';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import { JsonService } from 'src/app/core/services/json/json.service';
 
 @Component({
@@ -23,6 +23,11 @@ export class JsonFieldComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.formGroup = this.formGroupDirective.form;
 
+    const preSetType = this.formGroup.get('type').value;
+    if (preSetType) {
+      this.setValueControl(preSetType);
+    }
+
     this.configSubscription$ = this.formGroup.get('type').valueChanges.subscribe((type) => {
       const value = this.formGroup.get('value');
 
@@ -30,9 +35,7 @@ export class JsonFieldComponent implements OnInit, OnDestroy {
         this.formGroup.removeControl('value');
       }
 
-      const control = this.jsonService.getControl(type);
-
-      this.formGroup.addControl('value', control);
+      this.setValueControl(type);
     });
   }
 
@@ -52,10 +55,44 @@ export class JsonFieldComponent implements OnInit, OnDestroy {
       type: new FormControl<JSONType>(null, { validators: Validators.required }),
     });
 
-    (this.formGroup.get('value').value as FormArray).push(newItem);
+    timer(1).subscribe(() => {
+      let formArray = this.formGroup.get('value').value as FormArray;
+
+      if (!formArray) {
+        const type = this.formGroup.get('type').value;
+        this.formGroup.removeControl('value');
+        this.setValueControl(type);
+        formArray = this.formGroup.get('value').value as FormArray;
+      }
+
+      if (formArray.value.length > 0) {
+        const firstType = formArray.value[0].type;
+        newItem.get('type').setValue(firstType);
+      }
+
+      formArray.push(newItem);
+    });
   }
 
   removeItem(index: number) {
     (this.formGroup.get('value').value as FormArray).removeAt(index);
+  }
+
+  private resetValueControl() {
+    const value = this.formGroup.get('value');
+
+    if (value) {
+      this.formGroup.removeControl('value');
+    }
+  }
+
+  private setValueControl(type: JSONType) {
+    if (type === 'object' && !this.formGroup?.get('value')?.value) {
+      this.resetValueControl();
+    }
+
+    const control = this.jsonService.getControl(type);
+
+    this.formGroup.addControl('value', control);
   }
 }

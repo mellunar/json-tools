@@ -1,6 +1,10 @@
 <form class="e-array-row-field" [formGroup]="formGroup">
   <div class="e-array-row-field__main">
-    <app-field-select [options]="typeOptions" [noPadding]="true" formControlName="type"></app-field-select>
+    <app-field-select
+      class="e-array-row-field__col"
+      [options]="typeOptions"
+      [noPadding]="true"
+      formControlName="type"></app-field-select>
 
     <ng-container *ngIf="formGroup.controls?.value">
       <ng-container [ngSwitch]="formGroup.value.type">
@@ -31,11 +35,13 @@
       </div>
 
       <ng-container *ngSwitchCase="'object'">
-        <div
-          class="e-array-row-field__row"
-          *ngFor="let control of $any(formGroup.value.value).controls; let i = index">
-          <app-json-field [formGroup]="control" (remove)="removeItem(i)"></app-json-field>
-        </div>
+        <ng-container *ngIf="formGroup.value.value">
+          <div
+            class="e-array-row-field__row"
+            *ngFor="let control of $any(formGroup.value.value).controls; let i = index">
+            <app-json-field [formGroup]="control" (remove)="removeItem(i)"></app-json-field>
+          </div>
+        </ng-container>
 
         <button class="c-button u-margin-left--lg u-margin-top--base" (click)="addItem()">
           <i-feather name="plus"></i-feather>

@@ -1,4 +1,4 @@
-<div class="e-array-field" *ngIf="ngControl">
+<div class="e-array-field" *ngIf="ngControl?.value">
   <div
     class="e-array-field__row"
     *ngFor="let control of ngControl.value.controls; let i = index"
