@@ -17,7 +17,7 @@ export class ArrayRowFieldComponent implements OnInit, OnDestroy {
     value: FormControl<JSONValue>;
   }>;
 
-  typeOptions: JSONType[] = ['string', 'number', 'boolean', 'array', 'object', 'empty-array', 'empty-object'];
+  typeOptions: JSONType[] = ['string', 'number', 'boolean', 'array', 'object', 'null'];
 
   typeSubscription$: Subscription;
 

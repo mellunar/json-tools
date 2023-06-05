@@ -19,11 +19,14 @@ export class JsonService {
   }
 
   getControl(type: JSONType, value?: any): FormControl {
+    // null
     switch (type) {
       case 'string':
         return new FormControl<string>(value ? value : '');
       case 'number':
-        return new FormControl<number>(value ? value : null, { validators: Validators.pattern(/^\d+(\.\d+)?$/g) });
+        return new FormControl<number>(value || value === 0 ? value : null, {
+          validators: Validators.pattern(/^\d+(\.\d+)?$/g),
+        });
       case 'boolean':
         return new FormControl<boolean>(value ? value : false);
       case 'object':
@@ -37,10 +40,8 @@ export class JsonService {
         );
       case 'array':
         return new FormControl<FormArray>(new FormArray([]));
-      case 'empty-object':
-        return new FormControl<any>({});
-      case 'empty-array':
-        return new FormControl<any>([]);
+      case 'null':
+        return new FormControl<null>(null);
     }
   }
 }

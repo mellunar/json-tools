@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ValueAccessorDirective, injectNgControl } from '../../directives/value-accessor.directive';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JSONType } from 'src/app/core/services/json/json.interface';
@@ -11,16 +11,10 @@ import { JsonService } from 'src/app/core/services/json/json.service';
   styleUrls: ['./array-field.component.scss'],
   hostDirectives: [ValueAccessorDirective],
 })
-export class ArrayFieldComponent implements OnInit {
+export class ArrayFieldComponent {
   ngControl = injectNgControl();
 
   constructor(private jsonService: JsonService) {}
-
-  ngOnInit() {
-    if (this.ngControl?.value?.length < 1) {
-      this.addItem();
-    }
-  }
 
   addItem() {
     const newItem: FormGroup = new FormGroup({

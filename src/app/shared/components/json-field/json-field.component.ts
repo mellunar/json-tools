@@ -14,7 +14,7 @@ export class JsonFieldComponent implements OnInit, OnDestroy {
 
   formGroup: JSONFieldType;
 
-  typeOptions: JSONType[] = ['string', 'number', 'boolean', 'array', 'object', 'empty-array', 'empty-object'];
+  typeOptions: JSONType[] = ['string', 'number', 'boolean', 'array', 'object', 'null'];
 
   configSubscription$: Subscription;
 

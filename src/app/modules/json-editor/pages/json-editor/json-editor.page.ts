@@ -112,10 +112,12 @@ export class JsonEditorPage implements OnInit, OnDestroy {
   private getArrayFromArray(formArray: any[]) {
     const finalArray: JSONType[] = [];
 
-    formArray.forEach((arrayItem) => {
-      const value = this.getValueFromItem(arrayItem);
-      finalArray.push(value);
-    });
+    if (formArray.length > 0) {
+      formArray.forEach((arrayItem) => {
+        const value = this.getValueFromItem(arrayItem);
+        finalArray.push(value);
+      });
+    }
 
     return finalArray;
   }
@@ -148,10 +150,6 @@ export class JsonEditorPage implements OnInit, OnDestroy {
           return this.getArrayFromArray(item.value.value);
         }
       }
-      case 'empty-object':
-        return {};
-      case 'empty-array':
-        return [];
     }
   }
 
@@ -214,9 +212,13 @@ export class JsonEditorPage implements OnInit, OnDestroy {
       const valueControl = this.jsonService.getControl('boolean', value);
       control.get('type').setValue('boolean');
       control.addControl('value', valueControl);
+    } else if (value === null || value === undefined) {
+      const valueControl = this.jsonService.getControl('null', value);
+      control.get('type').setValue('null');
+      control.addControl('value', valueControl);
     } else if (Array.isArray(value) && value.length < 1) {
-      const valueControl = this.jsonService.getControl('empty-array');
-      control.get('type').setValue('empty-array');
+      const valueControl = this.jsonService.getControl('array');
+      control.get('type').setValue('array');
       control.addControl('value', valueControl);
     } else if (Array.isArray(value)) {
       const valueControl = this.jsonService.getControl('array');
@@ -228,8 +230,8 @@ export class JsonEditorPage implements OnInit, OnDestroy {
         (control.get('value').value as FormArray).push(itemControl);
       });
     } else if (typeof value === 'object' && Object.keys(value).length < 1) {
-      const valueControl = this.jsonService.getControl('empty-object');
-      control.get('type').setValue('empty-object');
+      const valueControl = this.jsonService.getControl('array');
+      control.get('type').setValue('object');
       control.addControl('value', valueControl);
     } else if (typeof value === 'object') {
       // get an empty array

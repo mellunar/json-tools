@@ -1,10 +1,10 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 export interface JSONObject {
-  [key: string]: string | number | boolean | FormGroup | FormArray | {} | [];
+  [key: string]: string | number | boolean | null | FormGroup | FormArray | {} | [];
 }
 
-export type JSONType = 'string' | 'number' | 'boolean' | 'object' | 'array' | 'empty-object' | 'empty-array';
+export type JSONType = 'string' | 'number' | 'boolean' | 'object' | 'array' | 'null';
 
 export type JSONValue = string | number | boolean | FormGroup | FormArray | {} | [];
 
